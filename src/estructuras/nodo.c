@@ -18,3 +18,12 @@ typedef struct Nodo {
     struct Nodo *best_terminal;
     int best_priority;
 } Nodo;
+
+/* Estructura trie
+    @param raiz: Referencia al nodo raiz
+    @param num_nodos: Numero de nodos que esta usando la estructura
+*/
+typedef struct {
+    Nodo* raiz;
+    int num_nodos;  
+} Trie;

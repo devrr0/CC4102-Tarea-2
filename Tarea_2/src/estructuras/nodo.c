@@ -27,3 +27,13 @@ typedef struct {
     Nodo* raiz;
     int num_nodos;  
 } Trie;
+
+/* Función para convertir caracter a indice
+    @param c: Caracter a convertir
+*/
+int char_index(char c) {
+    if (c == '$') return 26;  
+    if (c >= 'a' && c <= 'z') return c - 'a';
+    if (c >= 'A' && c <= 'Z') return c - 'A';  
+    return -1;  
+}

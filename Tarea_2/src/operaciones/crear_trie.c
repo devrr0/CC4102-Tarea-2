@@ -22,6 +22,12 @@ Nodo *inicializar_nodo(Nodo* parent){
     return n;
 }
 
+void *crear_nodo_terminal(Nodo *n, char *w){
+    Nodo *nodo_terminal = inicializar_nodo(n);
+    nodo_terminal->str = strdup(w);
+    n->next[26] = nodo_terminal;
+}
+
 /* Inicializar trie
     @return Trie inicializado con nodo raiz
 */

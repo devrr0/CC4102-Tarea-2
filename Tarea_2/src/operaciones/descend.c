@@ -7,4 +7,7 @@
     @param v: Puntero al nodo del trie
     @param c: Caracter por el cual descender
 */ 
-Nodo *descend(Nodo *v, char *c);
+Nodo *descend(Nodo *v, char *c){
+    int index = char_index(c);  // caracter por caracter ??
+    return v->next[index];
+}

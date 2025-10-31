@@ -6,4 +6,6 @@
     según el subárbol de 𝑣.
     @param v: Puntero al nodo del trie
 */ 
-Nodo *autocomplete(Nodo *v);
+Nodo *autocomplete(Nodo *v){
+    return v->best_terminal;
+}

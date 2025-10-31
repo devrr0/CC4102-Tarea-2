@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../estructuras/nodo.c"
-#include "crear_trie.c"
 
 /* Funcion para insertar la palabra 𝑤 caracter por carácter.
     @param w: Caracter a insertar
@@ -25,5 +24,5 @@ void insert(Trie *t, char *w){
         actual->next[27] = nodo_terminal;
         t->num_nodos++;
     }
-
+    update_priority(actual->next[26]);  // actualizar prioridad del nodo terminal
 }

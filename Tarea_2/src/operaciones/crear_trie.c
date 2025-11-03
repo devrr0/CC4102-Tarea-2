@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../estructuras/nodo.c"
+// #include "../estructuras/nodo.c"
 #define A 27
 
 /* Inicializar nodo
@@ -9,7 +9,7 @@
     @return Nodo inicializado con valores 0
 */
 Nodo *inicializar_nodo(Nodo* parent){
-    Nodo* n = malloc(sizeof(Nodo)); 
+    Nodo *n = malloc(sizeof(Nodo)); 
     n->parent = parent;
     for (int i = 0; i < A; i++) {
         n->next[i] = NULL;
@@ -22,7 +22,7 @@ Nodo *inicializar_nodo(Nodo* parent){
     return n;
 }
 
-void *crear_nodo_terminal(Nodo *n, char *w){
+void crear_nodo_terminal(Nodo *n, char *w){
     Nodo *nodo_terminal = inicializar_nodo(n);
     nodo_terminal->str = strdup(w);
     n->next[26] = nodo_terminal;
@@ -32,14 +32,28 @@ void *crear_nodo_terminal(Nodo *n, char *w){
     @return Trie inicializado con nodo raiz
 */
 Trie *inicializar_trie(){
-    Trie* t = malloc(sizeof(Trie));
+    Trie *t = malloc(sizeof(Trie));
     t->raiz = inicializar_nodo(NULL);
     t->num_nodos = 1;
     
     return t;
 }
 
+/* Libera la memoria de un nodo
+    @param n: Nodo a liberar
+*/
+void liberar_nodo(Nodo *n) {
+    for (int i = 0; i < A; i++) {
+        if (n->next[i] != NULL) liberar_nodo(n->next[i]);
+    }
+    if (n->str) free(n->str);
+    free(n);
+}
+
 /* Libera la memoria de un trie
     @param t: Trie a liberar
 */
-void liberar_trie(Trie *t);
+void liberar_trie(Trie *t) {
+    liberar_nodo(t->raiz);
+    free(t);
+}

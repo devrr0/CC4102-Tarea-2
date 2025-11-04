@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-// #include "../estructuras/nodo.c"
 #define A 27
 
 /* Inicializar nodo
@@ -22,6 +21,10 @@ Nodo *inicializar_nodo(Nodo* parent){
     return n;
 }
 
+/* Funcion para crear un nodo terminal
+    @param n: Nodo padre
+    @param w: Palabra correspondiente al nodo terminal
+*/
 void crear_nodo_terminal(Nodo *n, char *w){
     Nodo *nodo_terminal = inicializar_nodo(n);
     nodo_terminal->str = strdup(w);

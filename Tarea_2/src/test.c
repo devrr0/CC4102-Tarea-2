@@ -4,29 +4,47 @@
 #include "estructuras/nodo.c"
 #include "operaciones/insert.c"
 #include "operaciones/crear_trie.c"
+#include "operaciones/update_priority.c"
+#include "operaciones/autocomplete.c"
 #define A 27
 
-// Función auxiliar para imprimir el trie (para debugging)
-void imprimir_trie_rec(Nodo *nodo, int nivel) { 
+/* Funcion para imprimir un trie recursivamente
+    @param nodo: Nodo actual
+    @param nivel: Nivel del nodo en el trie
+*/
+void imprimir_trie_rec(Nodo *nodo, int nivel, FILE *file) { 
 
     for (int i=0; i<A; i++) {
         if (nodo->next[i]) {
             Nodo *actual = nodo->next[i];
-            printf("Nodo: %c ; Nivel: %d\n", index_char(i), nivel + 1);
+            fprintf(file, "Nodo: %c ; Nivel: %d ; Prioridad: %d\n", index_char(i), nivel + 1, actual->priority);
             if (actual->str) {
-                printf("Palabra: %s\n", actual->str);
+                fprintf(file, "Palabra: %s\n", actual->str);
             }
-            imprimir_trie_rec(actual, nivel + 1);
+            imprimir_trie_rec(actual, nivel+1, file);
         }
     }
 }
 
-void imprimir_trie(Trie* trie) {
-    if (!trie) return;
-    char buffer[100];
-    printf("=== Contenido del Trie ===\n");
-    imprimir_trie_rec(trie->raiz, 0);
-    printf("==========================\n");
+/* Funcion para imprimir un trie
+    @param trie: Trie a imprimir
+*/
+void imprimir_trie(Trie* trie, const char *filename) {
+    FILE *file = fopen(filename, "w");
+    if (!file) {
+        printf("Error al abrir el archivo de salida: %s\n", filename);
+        return;
+    }
+    // Imprimir trie
+    fprintf(file, "=== Contenido del Trie ===\n");
+    imprimir_trie_rec(trie->raiz, 0, file);
+    fprintf(file, "==========================\n");
+    // Imprimir autocompletado
+    Nodo *raiz = trie->raiz;
+    fprintf(file, "Autocompletar raiz: %s\n", autocomplete(raiz)->str);
+    fprintf(file, "Autocompletar h: %s\n", autocomplete(raiz->next['h' - 'a'])->str);
+
+    fclose(file);
 }
 
 
@@ -48,6 +66,6 @@ void main(){
         }
     }
     fclose(archivo);
-    imprimir_trie(trie);
+    imprimir_trie(trie, "../resultados/test.txt");
     liberar_trie(trie);
 }

@@ -28,7 +28,7 @@ typedef struct {
     int num_nodos;  
 } Trie;
 
-/* Función para convertir caracter a indice
+/* Funcion para convertir caracter a indice
     @param c: Caracter a convertir
 */
 int char_index(char c) {
@@ -38,9 +38,11 @@ int char_index(char c) {
     return -1;  
 }
 
-// Función para convertir índice a carácter
-char index_char(int idx) {
-    if (idx == 26) return '$';
-    if (idx >= 0 && idx < 26) return 'a' + idx;
+/* Funcion para convertit indice a caracter
+    @param indice: Indice a convertir
+*/
+char index_char(int indice) {
+    if (indice == 26) return '$';
+    if (indice >= 0 && indice < 26) return 'a' + indice;
     return '?';  
 }

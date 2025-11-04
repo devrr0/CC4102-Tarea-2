@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../estructuras/nodo.c"
 
 /* Función que retorna un puntero al nodo terminal que representa el mejor autocompletado
     según el subárbol de 𝑣.

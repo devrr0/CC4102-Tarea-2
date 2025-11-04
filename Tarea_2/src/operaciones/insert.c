@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-// #include "../estructuras/nodo.c"
 
 Nodo *inicializar_nodo(Nodo* parent);
 void crear_nodo_terminal(Nodo *n, char *w);
+void update_priority(Nodo *v);
 
 /* Funcion para insertar la palabra 𝑤 caracter por carácter.
     @param w: Caracter a insertar
@@ -20,6 +20,7 @@ void insert(Trie *t, char *w){
             actual->next[index] = inicializar_nodo(actual);    
             t->num_nodos++;
             crear_nodo_terminal(actual->next[index], w);
+            update_priority(actual->next[index]->next[26]);
             t->num_nodos++;
             return;
         }
@@ -30,7 +31,10 @@ void insert(Trie *t, char *w){
                 int j=i+1;
                 while (j<strlen(w) && j<strlen(s) && w[j]==s[j]) j++;
 
-                if (j==strlen(w) && j==strlen(s)) return;
+                if (j==strlen(w) && j==strlen(s)){
+                    update_priority(terminal);
+                    return;
+                }
 
                 Nodo *nodo_diff = actual;
                 for(int k=i; k<j; k++){   // comenzar crear nodos iguales
@@ -39,12 +43,17 @@ void insert(Trie *t, char *w){
                     t->num_nodos++;
                     nodo_diff = nodo_diff->next[index2];
                 }
+                // fin camino palabra w
                 int index_w = char_index(w[j]);
-                int index_s = char_index(s[j]);
                 nodo_diff->next[index_w] = inicializar_nodo(nodo_diff);
                 crear_nodo_terminal(nodo_diff->next[index_w], w);
+                update_priority(nodo_diff->next[index_w]->next[26]);
+                // fin camino palabra s
+                int index_s = char_index(s[j]);
                 nodo_diff->next[index_s] = inicializar_nodo(nodo_diff);
                 crear_nodo_terminal(nodo_diff->next[index_s], s);
+                update_priority(nodo_diff->next[index_s]->next[26]);
+
                 t->num_nodos+=4;
                 hijo->next[26] = NULL;
                 return;
@@ -53,6 +62,7 @@ void insert(Trie *t, char *w){
         actual = actual->next[index];
     }
     crear_nodo_terminal(actual, w);
+    update_priority(actual->next[26]);
     t->num_nodos++;
 }
 

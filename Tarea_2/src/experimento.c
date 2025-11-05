@@ -3,16 +3,104 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
+#include <ctype.h>
 #include "estructuras/nodo.c"
 #include "operaciones/insert.c"
 #include "operaciones/crear_trie.c"
 #include "operaciones/update_priority.c"
 #include "operaciones/autocomplete.c"
+#include "operaciones/descend.c"
 #define A 27
 #define M 16
 #define N 1<<18
 
-void experimento1(FILE *archivo_out, FILE *archivo_out_time){
+/* Funcion auxiliar para realizar analisis de autocompletado en un texto
+    @param file_in: Archivo de texto con palabras a buscar
+    @param file_out: Archivo de texto para guardar resultados
+    @param trie: Trie sobre el cual hacer autocompletado
+*/
+void analisis_autocomplete(FILE *file_in, FILE *file_out, Trie *trie){
+    int total_chars = 0;
+    int chars_w = 0;
+    int cnt_words = 0;
+    int nxt_pow = 1;
+    int exp = 0;
+    clock_t start = clock();
+
+    char linea[256];
+    int cnt = 0;
+    char c;
+    while ((c = fgetc(file_in)) != EOF){
+        if (isspace(c)) {
+            if (cnt == 0) continue;  
+            linea[cnt] = '\0';
+            cnt = 0;
+            cnt_words++;
+            total_chars += strlen(linea);
+
+            Nodo *actual = trie->raiz;
+            int word_in = 0;
+            int user_w = 0;
+            for(int i=0; i<strlen(linea); i++){
+                actual = descend(actual, linea[i]);
+                user_w++;
+                if(actual == NULL){
+                    chars_w += strlen(linea);
+                    break;
+                }
+                Nodo *autoc = autocomplete(actual);
+                if(autoc && autoc->str && strcmp(autoc->str, linea) == 0){
+                    chars_w += user_w;
+                    word_in = 1;
+                    break;
+                }
+                if(i == strlen(linea)-1){
+                    chars_w += strlen(linea);
+                    break;
+                }
+            }
+            if(word_in) update_priority(actual->best_terminal);
+            if(cnt_words == nxt_pow){
+                double porc = (total_chars > 0 ? 100*((double)user_w / total_chars) : 0);
+                fprintf(file_out, "------ Para N = 2^%d ------\n", exp);
+                fprintf(file_out, "%.5f %% caracteres escritos\n", porc);
+                exp++;
+                nxt_pow <<= 1;
+            }
+            continue;
+        }
+        if (cnt < 255) linea[cnt++] = c;
+    }
+    clock_t end = clock();
+    double total_time = (double)(end - start) / CLOCKS_PER_SEC;
+    fprintf(file_out, "------ Tiempos de la estructura ------\n");
+    fprintf(file_out, "Tiempo total: %.6f s\n", total_time);
+    fprintf(file_out, "Tiempo normalizado (por palabra): %.10f s/pal\n", total_time / cnt_words);
+    fprintf(file_out, "Tiempo normalizado (por caracter): %.10f s/char\n", total_time / total_chars);
+}
+
+/* Funcion auxiliar para aplicar analisis de autocompletado 
+    @param filename: Nombre del archivo de texto con palabras a buscar
+    @param file_out: Archivo de texto para guardar resultados
+    @param trie: Trie sobre el cual hacer autocompletado
+*/
+void experimento2(const char* filename, FILE *archivo_out, Trie *trie){
+    FILE* archivo = fopen(filename, "rb");
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo\n");
+        return;
+    }
+    Trie *trie_aux = trie;
+    fprintf(archivo_out, "---------- Para archivo %s ----------\n", filename);
+    analisis_autocomplete(archivo, archivo_out, trie_aux);
+    fclose(archivo);
+}
+
+/* Funcion auxiliar para los experimentos
+    @param archivo_out: Archivo de texto para guardar resultados
+    @param archivo_out_time: Archivo de texto para guardar resultados de tiempo
+*/
+void experimento(FILE *archivo_out, FILE *archivo_out_time){
     Trie* trie = inicializar_trie();
     FILE* archivo_in = fopen("../datos/words.txt", "rb");
     if (archivo_in == NULL) {
@@ -21,7 +109,7 @@ void experimento1(FILE *archivo_out, FILE *archivo_out_time){
         return;
     }
     fprintf(archivo_out, "---------- INSERTANDO WORDS.TXT ----------\n");
-    fprintf(archivo_out_time, "---------- INSERTANDO WORDS.TXT ----------\n");
+    printf("---------- INSERTANDO WORDS.TXT ----------\n");
     int nxt_pow = 1;
     int exp = 0;
     int size_group = N/M;
@@ -61,6 +149,13 @@ void experimento1(FILE *archivo_out, FILE *archivo_out_time){
         }
     }
     fclose(archivo_in);
+    printf("---------- INSERCION TERMINADA ----------\n");
+    printf("---------- COMENZANDO ANALISIS DE AUTOCOMPLETADO ----------\n");
+    fprintf(archivo_out, "---------- ANALISIS AUTOCOMPLETADO ----------\n");
+    experimento2("../datos/wikipedia.txt", archivo_out, trie);
+    experimento2("../datos/random.txt", archivo_out, trie);
+    experimento2("../datos/random_with_distribution.txt", archivo_out, trie);
+    printf("---------- ANALISIS DE AUTOCOMPLETADO TERMINADO ----------\n");
     liberar_trie(trie);
 }
 
@@ -75,8 +170,8 @@ void main(){
         printf("Error al abrir el archivo de salida\n");
         return;
     }
-    printf("\n---------- EJECUTANDO EXPERIMENTO 1 ----------\n");
-    experimento1(file1, file2);
+    printf("\n---------- EJECUTANDO EXPERIMENTO ----------\n");
+    experimento(file1, file2);
     fclose(file1);
     fclose(file2);
 }

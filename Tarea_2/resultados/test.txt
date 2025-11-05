@@ -1,4 +1,10 @@
 === Contenido del Trie ===
+Nodo: a ; Nivel: 1 ; Prioridad: 0
+Nodo: a ; Nivel: 2 ; Prioridad: 0
+Nodo: $ ; Nivel: 3 ; Prioridad: 1
+Palabra: aa
+Nodo: $ ; Nivel: 2 ; Prioridad: 1
+Palabra: a
 Nodo: b ; Nivel: 1 ; Prioridad: 0
 Nodo: $ ; Nivel: 2 ; Prioridad: 1
 Palabra: brilla

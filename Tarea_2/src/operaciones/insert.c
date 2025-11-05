@@ -43,6 +43,32 @@ void insert(Trie *t, char *w){
                     t->num_nodos++;
                     nodo_diff = nodo_diff->next[index2];
                 }
+                if(j==strlen(s) && j<strlen(w)){
+                    crear_nodo_terminal(nodo_diff, s);
+                    update_priority(nodo_diff->next[26]);
+                    t->num_nodos++;
+                    int nxt_index = char_index(w[j]);
+                    nodo_diff->next[nxt_index] = inicializar_nodo(nodo_diff);    
+                    t->num_nodos++;
+                    crear_nodo_terminal(nodo_diff->next[nxt_index], w);
+                    update_priority(nodo_diff->next[nxt_index]->next[26]);
+                    t->num_nodos++;
+                    //actual->next[index]->next[26] = NULL;
+                    return;
+            
+                } 
+                if(j==strlen(w) && j<strlen(s)){
+                    crear_nodo_terminal(nodo_diff, w);
+                    update_priority(nodo_diff->next[26]);
+                    t->num_nodos++;
+                    int nxt_index = char_index(s[j]);
+                    nodo_diff->next[nxt_index] = inicializar_nodo(nodo_diff);    
+                    t->num_nodos++;
+                    crear_nodo_terminal(nodo_diff->next[nxt_index], s);
+                    update_priority(nodo_diff->next[nxt_index]->next[26]);
+                    t->num_nodos++;
+                    return;
+                }
                 // fin camino palabra w
                 int index_w = char_index(w[j]);
                 nodo_diff->next[index_w] = inicializar_nodo(nodo_diff);

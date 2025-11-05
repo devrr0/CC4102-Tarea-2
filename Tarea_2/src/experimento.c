@@ -62,6 +62,7 @@ void analisis_autocomplete(FILE *file_in, FILE *file_out, Trie *trie){
             if(word_in) update_priority(actual->best_terminal);
             if(cnt_words == nxt_pow){
                 double porc = (total_chars > 0 ? 100*((double)user_w / total_chars) : 0);
+                printf("En N = 2^%d\n", exp); 
                 fprintf(file_out, "------ Para N = 2^%d ------\n", exp);
                 fprintf(file_out, "%.5f %% caracteres escritos\n", porc);
                 exp++;
@@ -91,6 +92,7 @@ void experimento2(const char* filename, FILE *archivo_out, Trie *trie){
         return;
     }
     Trie *trie_aux = trie;
+    printf("En archivo %s\n", filename);
     fprintf(archivo_out, "---------- Para archivo %s ----------\n", filename);
     analisis_autocomplete(archivo, archivo_out, trie_aux);
     fclose(archivo);
@@ -126,11 +128,14 @@ void experimento(FILE *archivo_out, FILE *archivo_out_time){
         if (strlen(linea) > 0) {
             cnt_chars+=strlen(linea);
             cnt_insert+=strlen(linea);
+            //printf("Insertando [%s]\n", linea);
             insert(trie, linea);  
+            //printf("Insercion exitosa\n");
             cnt++;
             if(cnt==nxt_pow){
                 int nodos = trie->num_nodos;
                 int nodos_norm = (cnt_insert > 0 ? nodos / cnt_insert : 0);
+                printf("En N = 2^%d\n", exp); 
                 fprintf(archivo_out, "------ Para N = 2^%d ------\n", exp);
                 fprintf(archivo_out, "Cantidad de nodos : %d\n", nodos);
                 fprintf(archivo_out, "Cantidad de nodos normalizado : %d\n", nodos_norm);

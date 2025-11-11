@@ -6,13 +6,29 @@
     @param v: Puntero al nodo del trie
 */ 
 void update_priority(Nodo *v){
+    // incrementar prioridad del nodo terminal
     v->priority++;
+    v->best_terminal = v;
+    v->best_priority = v->priority;
+    
+    // propagar hacia arriba actualizando padres
     Nodo *actual = v->parent;
-    while(actual!=NULL){
-        if(v->priority > actual->best_priority){
+    
+    while(actual != NULL){
+        // verificar si este nodo terminal tiene mayor prioridad que el actual
+        if(actual->best_terminal == NULL || v->priority > actual->best_priority){
+        // Actualizar ya que no había best_terminal o tiene mayor prioridad
             actual->best_priority = v->priority;
             actual->best_terminal = v;
         }
-        actual=actual->parent;
+        else if(actual->best_terminal == v){
+            // si v era el best_terminal aumenta prioridad
+            actual->best_priority = v->priority;
+        }
+        else {
+            // no es necesario seguir propagando
+            break;
+        }
+        actual = actual->parent;
     }
 }

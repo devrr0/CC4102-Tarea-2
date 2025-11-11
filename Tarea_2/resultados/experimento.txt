@@ -1,212 +1,212 @@
 ---------- INSERTANDO WORDS.TXT ----------
 ------ Para N = 2^0 ------
 Cantidad de nodos : 3
-Cantidad de nodos normalizado : 3
+Cantidad de nodos normalizado : 3.000000
 ------ Para N = 2^1 ------
-Cantidad de nodos : 7
-Cantidad de nodos normalizado : 2
+Cantidad de nodos : 5
+Cantidad de nodos normalizado : 1.666667
 ------ Para N = 2^2 ------
-Cantidad de nodos : 15
-Cantidad de nodos normalizado : 1
+Cantidad de nodos : 9
+Cantidad de nodos normalizado : 1.000000
 ------ Para N = 2^3 ------
-Cantidad de nodos : 31
-Cantidad de nodos normalizado : 1
+Cantidad de nodos : 20
+Cantidad de nodos normalizado : 0.740741
 ------ Para N = 2^4 ------
-Cantidad de nodos : 63
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 48
+Cantidad de nodos normalizado : 0.648649
 ------ Para N = 2^5 ------
-Cantidad de nodos : 127
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 91
+Cantidad de nodos normalizado : 0.554878
 ------ Para N = 2^6 ------
-Cantidad de nodos : 255
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 205
+Cantidad de nodos normalizado : 0.521628
 ------ Para N = 2^7 ------
-Cantidad de nodos : 511
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 418
+Cantidad de nodos normalizado : 0.469136
 ------ Para N = 2^8 ------
-Cantidad de nodos : 1023
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 875
+Cantidad de nodos normalizado : 0.449640
 ------ Para N = 2^9 ------
-Cantidad de nodos : 2047
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 1801
+Cantidad de nodos normalizado : 0.440558
 ------ Para N = 2^10 ------
-Cantidad de nodos : 4095
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 3667
+Cantidad de nodos normalizado : 0.423441
 ------ Para N = 2^11 ------
-Cantidad de nodos : 8191
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 7776
+Cantidad de nodos normalizado : 0.419169
 ------ Para N = 2^12 ------
-Cantidad de nodos : 16383
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 15925
+Cantidad de nodos normalizado : 0.425848
 ------ Para N = 2^13 ------
-Cantidad de nodos : 32767
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 31567
+Cantidad de nodos normalizado : 0.435689
 ------ Para N = 2^14 ------
-Cantidad de nodos : 65535
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 65135
+Cantidad de nodos normalizado : 0.431084
 ------ Para N = 2^15 ------
-Cantidad de nodos : 131067
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 124976
+Cantidad de nodos normalizado : 0.434317
 ------ Para N = 2^16 ------
-Cantidad de nodos : 262137
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 247709
+Cantidad de nodos normalizado : 0.417095
 ------ Para N = 2^17 ------
-Cantidad de nodos : 524263
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 496004
+Cantidad de nodos normalizado : 0.422508
 ------ Para N = 2^18 ------
-Cantidad de nodos : 1048525
-Cantidad de nodos normalizado : 0
+Cantidad de nodos : 1021219
+Cantidad de nodos normalizado : 0.423343
 ---------- ANALISIS AUTOCOMPLETADO ----------
 ---------- Para archivo ../datos/wikipedia.txt ----------
 ------ Para N = 2^0 ------
-25.00000 % caracteres escritos
+87.50000 % caracteres escritos
 ------ Para N = 2^1 ------
-18.18182 % caracteres escritos
+27.27273 % caracteres escritos
 ------ Para N = 2^2 ------
-11.11111 % caracteres escritos
+22.22222 % caracteres escritos
 ------ Para N = 2^3 ------
 4.16667 % caracteres escritos
 ------ Para N = 2^4 ------
-3.12500 % caracteres escritos
+4.68750 % caracteres escritos
 ------ Para N = 2^5 ------
-1.35135 % caracteres escritos
+2.70270 % caracteres escritos
 ------ Para N = 2^6 ------
 0.62305 % caracteres escritos
 ------ Para N = 2^7 ------
-0.30303 % caracteres escritos
+0.60606 % caracteres escritos
 ------ Para N = 2^8 ------
-0.15026 % caracteres escritos
+0.30053 % caracteres escritos
 ------ Para N = 2^9 ------
 0.07602 % caracteres escritos
 ------ Para N = 2^10 ------
-0.03817 % caracteres escritos
+0.05725 % caracteres escritos
 ------ Para N = 2^11 ------
 0.01878 % caracteres escritos
 ------ Para N = 2^12 ------
-0.00937 % caracteres escritos
+0.00468 % caracteres escritos
 ------ Para N = 2^13 ------
-0.00402 % caracteres escritos
+0.00803 % caracteres escritos
 ------ Para N = 2^14 ------
-0.00217 % caracteres escritos
+0.00108 % caracteres escritos
 ------ Para N = 2^15 ------
 0.00114 % caracteres escritos
 ------ Para N = 2^16 ------
-0.00058 % caracteres escritos
+0.00175 % caracteres escritos
 ------ Para N = 2^17 ------
 0.00029 % caracteres escritos
 ------ Para N = 2^18 ------
-0.00015 % caracteres escritos
------- Para N = 2^19 ------
 0.00007 % caracteres escritos
------- Para N = 2^20 ------
+------ Para N = 2^19 ------
 0.00004 % caracteres escritos
+------ Para N = 2^20 ------
+0.00008 % caracteres escritos
 ------ Para N = 2^21 ------
-0.00002 % caracteres escritos
+0.00004 % caracteres escritos
 ------ Para N = 2^22 ------
-0.00001 % caracteres escritos
+0.00000 % caracteres escritos
 ------ Tiempos de la estructura ------
-Tiempo total: 1.539000 s
-Tiempo normalizado (por palabra): 0.0000003669 s/pal
-Tiempo normalizado (por caracter): 0.0000000720 s/char
+Tiempo total: 2.322000 s
+Tiempo normalizado (por palabra): 0.0000005536 s/pal
+Tiempo normalizado (por caracter): 0.0000001087 s/char
 ---------- Para archivo ../datos/random.txt ----------
 ------ Para N = 2^0 ------
-16.66667 % caracteres escritos
+41.66667 % caracteres escritos
 ------ Para N = 2^1 ------
-10.00000 % caracteres escritos
+30.00000 % caracteres escritos
 ------ Para N = 2^2 ------
-5.12821 % caracteres escritos
+15.38462 % caracteres escritos
 ------ Para N = 2^3 ------
-2.85714 % caracteres escritos
+7.14286 % caracteres escritos
 ------ Para N = 2^4 ------
-1.32450 % caracteres escritos
+8.60927 % caracteres escritos
 ------ Para N = 2^5 ------
-0.66890 % caracteres escritos
+3.01003 % caracteres escritos
 ------ Para N = 2^6 ------
-0.32310 % caracteres escritos
+0.80775 % caracteres escritos
 ------ Para N = 2^7 ------
-0.16380 % caracteres escritos
+0.65520 % caracteres escritos
 ------ Para N = 2^8 ------
-0.08220 % caracteres escritos
+0.32881 % caracteres escritos
 ------ Para N = 2^9 ------
-0.04193 % caracteres escritos
+0.14675 % caracteres escritos
 ------ Para N = 2^10 ------
-0.02099 % caracteres escritos
+0.13644 % caracteres escritos
 ------ Para N = 2^11 ------
-0.01056 % caracteres escritos
+0.02641 % caracteres escritos
 ------ Para N = 2^12 ------
-0.00532 % caracteres escritos
+0.01331 % caracteres escritos
 ------ Para N = 2^13 ------
-0.00265 % caracteres escritos
+0.00796 % caracteres escritos
 ------ Para N = 2^14 ------
-0.00132 % caracteres escritos
+0.00529 % caracteres escritos
 ------ Para N = 2^15 ------
-0.00066 % caracteres escritos
+0.00199 % caracteres escritos
 ------ Para N = 2^16 ------
-0.00033 % caracteres escritos
+0.00099 % caracteres escritos
 ------ Para N = 2^17 ------
-0.00017 % caracteres escritos
+0.00091 % caracteres escritos
 ------ Para N = 2^18 ------
-0.00008 % caracteres escritos
+0.00012 % caracteres escritos
 ------ Para N = 2^19 ------
-0.00004 % caracteres escritos
+0.00012 % caracteres escritos
 ------ Para N = 2^20 ------
-0.00002 % caracteres escritos
+0.00007 % caracteres escritos
 ------ Para N = 2^21 ------
-0.00002 % caracteres escritos
+0.00004 % caracteres escritos
 ------ Para N = 2^22 ------
 0.00001 % caracteres escritos
 ------ Tiempos de la estructura ------
-Tiempo total: 2.186000 s
-Tiempo normalizado (por palabra): 0.0000005212 s/pal
-Tiempo normalizado (por caracter): 0.0000000566 s/char
+Tiempo total: 6.488000 s
+Tiempo normalizado (por palabra): 0.0000015469 s/pal
+Tiempo normalizado (por caracter): 0.0000001681 s/char
 ---------- Para archivo ../datos/random_with_distribution.txt ----------
 ------ Para N = 2^0 ------
 100.00000 % caracteres escritos
 ------ Para N = 2^1 ------
-50.00000 % caracteres escritos
+25.00000 % caracteres escritos
 ------ Para N = 2^2 ------
-16.66667 % caracteres escritos
+25.00000 % caracteres escritos
 ------ Para N = 2^3 ------
-5.26316 % caracteres escritos
+2.63158 % caracteres escritos
 ------ Para N = 2^4 ------
 3.03030 % caracteres escritos
 ------ Para N = 2^5 ------
-1.35135 % caracteres escritos
+2.70270 % caracteres escritos
 ------ Para N = 2^6 ------
-0.68493 % caracteres escritos
+1.02740 % caracteres escritos
 ------ Para N = 2^7 ------
-0.34542 % caracteres escritos
+1.03627 % caracteres escritos
 ------ Para N = 2^8 ------
-0.17094 % caracteres escritos
+0.94017 % caracteres escritos
 ------ Para N = 2^9 ------
-0.08718 % caracteres escritos
+0.04359 % caracteres escritos
 ------ Para N = 2^10 ------
-0.04344 % caracteres escritos
+0.02172 % caracteres escritos
 ------ Para N = 2^11 ------
-0.02192 % caracteres escritos
+0.03287 % caracteres escritos
 ------ Para N = 2^12 ------
-0.01100 % caracteres escritos
+0.02750 % caracteres escritos
 ------ Para N = 2^13 ------
-0.00550 % caracteres escritos
+0.01650 % caracteres escritos
 ------ Para N = 2^14 ------
-0.00274 % caracteres escritos
+0.00548 % caracteres escritos
 ------ Para N = 2^15 ------
-0.00137 % caracteres escritos
+0.00617 % caracteres escritos
 ------ Para N = 2^16 ------
-0.00069 % caracteres escritos
+0.00172 % caracteres escritos
 ------ Para N = 2^17 ------
-0.00034 % caracteres escritos
+0.00052 % caracteres escritos
 ------ Para N = 2^18 ------
 0.00017 % caracteres escritos
 ------ Para N = 2^19 ------
-0.00009 % caracteres escritos
+0.00013 % caracteres escritos
 ------ Para N = 2^20 ------
-0.00004 % caracteres escritos
+0.00006 % caracteres escritos
 ------ Para N = 2^21 ------
-0.00002 % caracteres escritos
+0.00004 % caracteres escritos
 ------ Para N = 2^22 ------
-0.00001 % caracteres escritos
+0.00002 % caracteres escritos
 ------ Tiempos de la estructura ------
-Tiempo total: 1.260000 s
-Tiempo normalizado (por palabra): 0.0000003004 s/pal
-Tiempo normalizado (por caracter): 0.0000000678 s/char
+Tiempo total: 2.197000 s
+Tiempo normalizado (por palabra): 0.0000005238 s/pal
+Tiempo normalizado (por caracter): 0.0000001183 s/char

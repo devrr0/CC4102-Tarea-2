@@ -12,7 +12,6 @@
 #include "operaciones/descend.c"
 #define A 27
 #define M 16
-#define N 1<<18
 
 /* Funcion auxiliar para realizar analisis de autocompletado en un texto
     @param file_in: Archivo de texto con palabras a buscar
@@ -114,6 +113,7 @@ void experimento(FILE *archivo_out, FILE *archivo_out_time){
     printf("---------- INSERTANDO WORDS.TXT ----------\n");
     int nxt_pow = 1;
     int exp = 0;
+    int N = 1<<18;
     int size_group = N/M;
     int actual_group = 1;
     int cnt_chars = 0;
@@ -128,17 +128,15 @@ void experimento(FILE *archivo_out, FILE *archivo_out_time){
         if (strlen(linea) > 0) {
             cnt_chars+=strlen(linea);
             cnt_insert+=strlen(linea);
-            //printf("Insertando [%s]\n", linea);
             insert(trie, linea);  
-            //printf("Insercion exitosa\n");
             cnt++;
             if(cnt==nxt_pow){
                 int nodos = trie->num_nodos;
-                int nodos_norm = (cnt_insert > 0 ? nodos / cnt_insert : 0);
+                double nodos_norm = cnt_insert > 0 ? (double)nodos/(double)cnt_insert : 0.0;
                 printf("En N = 2^%d\n", exp); 
                 fprintf(archivo_out, "------ Para N = 2^%d ------\n", exp);
                 fprintf(archivo_out, "Cantidad de nodos : %d\n", nodos);
-                fprintf(archivo_out, "Cantidad de nodos normalizado : %d\n", nodos_norm);
+                fprintf(archivo_out, "Cantidad de nodos normalizado : %.6f\n", nodos_norm);
                 exp++;
                 nxt_pow <<= 1;
             }
@@ -146,7 +144,7 @@ void experimento(FILE *archivo_out, FILE *archivo_out_time){
                 clock_t end = clock();
                 double time = (double)(end - start) / CLOCKS_PER_SEC;
                 double time_norm = (cnt_chars > 0 ? time / cnt_chars : 0.0);
-                fprintf(archivo_out_time, "Grupo %d ; Tiempo normalizado: %.10f\n", actual_group, time_norm);
+                fprintf(archivo_out_time, "Grupo %d ; Tiempo: %.10f ; Tiempo normalizado: %.10f\n", actual_group, time, time_norm);
                 actual_group++;
                 cnt_chars=0;
                 start = clock();

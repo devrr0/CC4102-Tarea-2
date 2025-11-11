@@ -1,0 +1,60 @@
+=== Contenido del Trie ===
+Nodo: a ; Nivel: 1 ; Prioridad: 0
+Nodo: a ; Nivel: 2 ; Prioridad: 0
+Nodo: $ ; Nivel: 3 ; Prioridad: 1
+Palabra: aa
+Nodo: $ ; Nivel: 2 ; Prioridad: 1
+Palabra: a
+Nodo: b ; Nivel: 1 ; Prioridad: 0
+Nodo: r ; Nivel: 2 ; Prioridad: 0
+Nodo: i ; Nivel: 3 ; Prioridad: 0
+Nodo: l ; Nivel: 4 ; Prioridad: 0
+Nodo: l ; Nivel: 5 ; Prioridad: 0
+Nodo: a ; Nivel: 6 ; Prioridad: 0
+Nodo: $ ; Nivel: 7 ; Prioridad: 1
+Palabra: brilla
+Nodo: c ; Nivel: 1 ; Prioridad: 0
+Nodo: h ; Nivel: 2 ; Prioridad: 0
+Nodo: a ; Nivel: 3 ; Prioridad: 0
+Nodo: o ; Nivel: 4 ; Prioridad: 0
+Nodo: $ ; Nivel: 5 ; Prioridad: 4
+Palabra: chao
+Nodo: s ; Nivel: 4 ; Prioridad: 0
+Nodo: q ; Nivel: 5 ; Prioridad: 0
+Nodo: u ; Nivel: 6 ; Prioridad: 0
+Nodo: i ; Nivel: 7 ; Prioridad: 0
+Nodo: l ; Nivel: 8 ; Prioridad: 0
+Nodo: l ; Nivel: 9 ; Prioridad: 0
+Nodo: a ; Nivel: 10 ; Prioridad: 0
+Nodo: $ ; Nivel: 11 ; Prioridad: 2
+Palabra: chasquilla
+Nodo: e ; Nivel: 3 ; Prioridad: 0
+Nodo: $ ; Nivel: 4 ; Prioridad: 1
+Palabra: che
+Nodo: h ; Nivel: 1 ; Prioridad: 0
+Nodo: i ; Nivel: 2 ; Prioridad: 0
+Nodo: l ; Nivel: 3 ; Prioridad: 0
+Nodo: o ; Nivel: 4 ; Prioridad: 0
+Nodo: $ ; Nivel: 5 ; Prioridad: 3
+Palabra: hilo
+Nodo: o ; Nivel: 2 ; Prioridad: 0
+Nodo: l ; Nivel: 3 ; Prioridad: 0
+Nodo: a ; Nivel: 4 ; Prioridad: 0
+Nodo: $ ; Nivel: 5 ; Prioridad: 2
+Palabra: hola
+Nodo: o ; Nivel: 4 ; Prioridad: 0
+Nodo: g ; Nivel: 5 ; Prioridad: 0
+Nodo: r ; Nivel: 6 ; Prioridad: 0
+Nodo: a ; Nivel: 7 ; Prioridad: 0
+Nodo: m ; Nivel: 8 ; Prioridad: 0
+Nodo: a ; Nivel: 9 ; Prioridad: 0
+Nodo: $ ; Nivel: 10 ; Prioridad: 1
+Palabra: holograma
+Nodo: r ; Nivel: 1 ; Prioridad: 0
+Nodo: e ; Nivel: 2 ; Prioridad: 0
+Nodo: i ; Nivel: 3 ; Prioridad: 0
+Nodo: r ; Nivel: 4 ; Prioridad: 0
+Nodo: $ ; Nivel: 5 ; Prioridad: 1
+Palabra: reir
+==========================
+Autocompletar raiz: chao

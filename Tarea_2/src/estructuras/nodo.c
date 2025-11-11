@@ -12,7 +12,7 @@
 */
 typedef struct Nodo {
     struct Nodo *parent;  
-    struct Nodo **next[A];      
+    struct Nodo *next[A];      
     int priority;       
     char *str;
     struct Nodo *best_terminal;
@@ -27,3 +27,22 @@ typedef struct {
     Nodo* raiz;
     int num_nodos;  
 } Trie;
+
+/* Funcion para convertir caracter a indice
+    @param c: Caracter a convertir
+*/
+int char_index(char c) {
+    if (c == '$') return 26;  
+    if (c >= 'a' && c <= 'z') return c - 'a';
+    if (c >= 'A' && c <= 'Z') return c - 'A';  
+    return -1;  
+}
+
+/* Funcion para convertit indice a caracter
+    @param indice: Indice a convertir
+*/
+char index_char(int indice) {
+    if (indice == 26) return '$';
+    if (indice >= 0 && indice < 26) return 'a' + indice;
+    return '?';  
+}

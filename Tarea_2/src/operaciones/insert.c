@@ -6,6 +6,7 @@ void crear_nodo_terminal(Nodo *n, char *w);
 void update_priority(Nodo *v);
 
 /* Funcion para insertar la palabra 𝑤 caracter por carácter.
+    @param t: Trie con contador de nodos
     @param w: Caracter a insertar
 */ 
 void insert(Trie *t, char *w){

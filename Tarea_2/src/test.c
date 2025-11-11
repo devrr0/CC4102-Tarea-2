@@ -41,8 +41,6 @@ void imprimir_trie(Trie* trie, const char *filename) {
     // Imprimir autocompletado
     Nodo *raiz = trie->raiz;
     fprintf(file, "Autocompletar raiz: %s\n", autocomplete(raiz)->str);
-    //fprintf(file, "Autocompletar h: %s\n", autocomplete(raiz->next['h' - 'a'])->str);
-
     fclose(file);
 }
 

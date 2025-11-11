@@ -5,8 +5,12 @@
     descender por el carácter 𝑐 o nulo en caso de no existir
     @param v: Puntero al nodo del trie
     @param c: Caracter por el cual descender
+
+    @return Nodo siguiente acorde al caracter
 */ 
 Nodo *descend(Nodo *v, char c){
-    int index = char_index(c);  
+    if(v == NULL) return NULL;
+    int index = char_index(c);
+    if(index == -1) return NULL;
     return v->next[index];
 }

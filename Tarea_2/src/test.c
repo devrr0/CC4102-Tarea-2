@@ -13,7 +13,6 @@
     @param nivel: Nivel del nodo en el trie
 */
 void imprimir_trie_rec(Nodo *nodo, int nivel, FILE *file) { 
-
     for (int i=0; i<A; i++) {
         if (nodo->next[i]) {
             Nodo *actual = nodo->next[i];
@@ -42,7 +41,7 @@ void imprimir_trie(Trie* trie, const char *filename) {
     // Imprimir autocompletado
     Nodo *raiz = trie->raiz;
     fprintf(file, "Autocompletar raiz: %s\n", autocomplete(raiz)->str);
-    fprintf(file, "Autocompletar h: %s\n", autocomplete(raiz->next['h' - 'a'])->str);
+    //fprintf(file, "Autocompletar h: %s\n", autocomplete(raiz->next['h' - 'a'])->str);
 
     fclose(file);
 }
@@ -61,11 +60,13 @@ void main(){
         linea[strcspn(linea, "\n\r")] = '\0';
 
         if (strlen(linea) > 0) {
+            printf("Insertando linea: %s\n", linea);
             insert(trie, linea);  
             contador++;
         }
     }
     fclose(archivo);
+    printf("Imprimiendo trie");
     imprimir_trie(trie, "../resultados/test.txt");
     liberar_trie(trie);
 }

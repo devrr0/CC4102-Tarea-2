@@ -7,6 +7,8 @@
     @param c: Caracter por el cual descender
 */ 
 Nodo *descend(Nodo *v, char c){
-    int index = char_index(c);  
+    if(v == NULL) return NULL;
+    int index = char_index(c);
+    if(index == -1) return NULL;
     return v->next[index];
 }

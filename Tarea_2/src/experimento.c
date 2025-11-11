@@ -52,6 +52,7 @@ void analisis_autocomplete(FILE *file_in, FILE *file_out, Trie *trie){
                 if(autoc && autoc->str && strcmp(autoc->str, linea) == 0){
                     chars_w += user_w;
                     word_in = 1;
+                    update_priority(autoc);
                     break;
                 }
                 if(i == strlen(linea)-1){
@@ -61,7 +62,7 @@ void analisis_autocomplete(FILE *file_in, FILE *file_out, Trie *trie){
             }
             if(word_in) update_priority(actual->best_terminal);
             if(cnt_words == nxt_pow){
-                double porc = (total_chars > 0 ? 100*((double)user_w / total_chars) : 0);
+                double porc = (total_chars > 0 ? 100*((double)chars_w / total_chars) : 0);
                 printf("En N = 2^%d\n", exp); 
                 fprintf(file_out, "------ Para N = 2^%d ------\n", exp);
                 fprintf(file_out, "%.5f %% caracteres escritos\n", porc);

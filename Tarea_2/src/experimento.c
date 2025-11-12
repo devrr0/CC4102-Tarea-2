@@ -19,6 +19,7 @@
     @param trie: Trie sobre el cual hacer autocompletado
 */
 void analisis_autocomplete(FILE *file_in, FILE *file_out, Trie *trie){
+    int variante = trie->variante;
     int total_chars = 0;
     int chars_w = 0;
     int cnt_words = 0;
@@ -51,7 +52,7 @@ void analisis_autocomplete(FILE *file_in, FILE *file_out, Trie *trie){
                 if(autoc && autoc->str && strcmp(autoc->str, linea) == 0){
                     chars_w += user_w;
                     word_in = 1;
-                    update_priority(autoc);
+                    update_priority(autoc, variante);
                     break;
                 }
                 if(i == strlen(linea)-1){
@@ -59,7 +60,7 @@ void analisis_autocomplete(FILE *file_in, FILE *file_out, Trie *trie){
                     break;
                 }
             }
-            if(word_in) update_priority(actual->best_terminal);
+            if(word_in) update_priority(actual->best_terminal, variante);
             if(cnt_words == nxt_pow){
                 double porc = (total_chars > 0 ? 100*((double)chars_w / total_chars) : 0);
                 printf("En N = 2^%d\n", exp); 
@@ -103,11 +104,13 @@ void experimento2(const char* filename, FILE *archivo_out, Trie *trie){
     @param archivo_out_time: Archivo de texto para guardar resultados de tiempo
 */
 void experimento(FILE *archivo_out, FILE *archivo_out_time){
-    Trie* trie = inicializar_trie();
+    Trie* trie_v1 = inicializar_trie(1);        // variante -> cantidad de accesos
+    Trie* trie_v2 = inicializar_trie(0);        // variante -> tiempo de accesos
     FILE* archivo_in = fopen("../datos/words.txt", "rb");
     if (archivo_in == NULL) {
         printf("Error al abrir el archivo\n");
-        liberar_trie(trie);
+        liberar_trie(trie_v1);
+        liberar_trie(trie_v2);
         return;
     }
     fprintf(archivo_out, "---------- INSERTANDO WORDS.TXT ----------\n");
@@ -120,6 +123,7 @@ void experimento(FILE *archivo_out, FILE *archivo_out_time){
     int cnt_chars = 0;
     int cnt_insert = 0;
     clock_t start = clock();
+    double tiempo_acumulado = 0;
 
     char linea[256];
     int cnt = 0;
@@ -129,10 +133,16 @@ void experimento(FILE *archivo_out, FILE *archivo_out_time){
         if (strlen(linea) > 0) {
             cnt_chars+=strlen(linea);
             cnt_insert+=strlen(linea);
-            insert(trie, linea);  
+            // hacer insercion
+            clock_t t1 = clock();
+            insert(trie_v1, linea);
+            clock_t t2 = clock();
+            tiempo_acumulado += (double)(t2 - t1); 
+            insert(trie_v2, linea);
+
             cnt++;
             if(cnt==nxt_pow){
-                int nodos = trie->num_nodos;
+                int nodos = trie_v1->num_nodos;
                 double nodos_norm = cnt_insert > 0 ? (double)nodos/(double)cnt_insert : 0.0;
                 printf("En N = 2^%d\n", exp); 
                 fprintf(archivo_out, "------ Para N = 2^%d ------\n", exp);
@@ -143,12 +153,12 @@ void experimento(FILE *archivo_out, FILE *archivo_out_time){
             }
             if(cnt % size_group == 0){
                 clock_t end = clock();
-                double time = (double)(end - start) / CLOCKS_PER_SEC;
+                double time = tiempo_acumulado / CLOCKS_PER_SEC;
                 double time_norm = (cnt_chars > 0 ? time / cnt_chars : 0.0);
                 fprintf(archivo_out_time, "Grupo %d ; Tiempo: %.10f ; Tiempo normalizado: %.10f\n", actual_group, time, time_norm);
                 actual_group++;
                 cnt_chars=0;
-                start = clock();
+                tiempo_acumulado = 0;
             }
         }
     }
@@ -156,11 +166,19 @@ void experimento(FILE *archivo_out, FILE *archivo_out_time){
     printf("---------- INSERCION TERMINADA ----------\n");
     printf("---------- COMENZANDO ANALISIS DE AUTOCOMPLETADO ----------\n");
     fprintf(archivo_out, "---------- ANALISIS AUTOCOMPLETADO ----------\n");
-    experimento2("../datos/wikipedia.txt", archivo_out, trie);
-    experimento2("../datos/random.txt", archivo_out, trie);
-    experimento2("../datos/random_with_distribution.txt", archivo_out, trie);
+    printf("---------- PARA VARIANTE CANTIDAD DE ACCESOS ----------\n");
+    fprintf(archivo_out, "---------- VARIANTE CANTIDAD DE ACCESOS ----------\n");
+    experimento2("../datos/wikipedia.txt", archivo_out, trie_v1);
+    experimento2("../datos/random.txt", archivo_out, trie_v1);
+    experimento2("../datos/random_with_distribution.txt", archivo_out, trie_v1);
+    printf("---------- PARA VARIANTE TIEMPO DE ACCESOS ----------\n");
+    fprintf(archivo_out, "---------- VARIANTE TIEMPO DE ACCESOS ----------\n");
+    experimento2("../datos/wikipedia.txt", archivo_out, trie_v2);
+    experimento2("../datos/random.txt", archivo_out, trie_v2);
+    experimento2("../datos/random_with_distribution.txt", archivo_out, trie_v2);
     printf("---------- ANALISIS DE AUTOCOMPLETADO TERMINADO ----------\n");
-    liberar_trie(trie);
+    liberar_trie(trie_v1);
+    liberar_trie(trie_v2);
 }
 
 void main(){

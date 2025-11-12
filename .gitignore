@@ -1,4 +1,5 @@
 .vscode/*
+*.exe
 Tarea_2/datos/random_with_distribution.txt
 Tarea_2/datos/random.txt
 Tarea_2/datos/wikipedia.txt

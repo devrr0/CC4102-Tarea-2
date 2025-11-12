@@ -23,6 +23,7 @@ Luego es necesario subir a la carpeta */datos* los archivos *wikipedia.txt*, *ra
 ```bash
 cd Tarea_2
 cd src
+gcc -o experimento experimento.c
 ./experimento
 ```
 

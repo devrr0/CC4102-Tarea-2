@@ -13,10 +13,10 @@
 typedef struct Nodo {
     struct Nodo *parent;  
     struct Nodo *next[A];      
-    int priority;       
+    long long priority;       
     char *str;
     struct Nodo *best_terminal;
-    int best_priority;
+    long long best_priority;
 } Nodo;
 
 /* Estructura trie
@@ -26,6 +26,7 @@ typedef struct Nodo {
 typedef struct {
     Nodo* raiz;
     int num_nodos;  
+    int variante;
 } Trie;
 
 /* Funcion para convertir caracter a indice

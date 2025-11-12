@@ -34,11 +34,11 @@ void crear_nodo_terminal(Nodo *n, char *w){
 /* Inicializar trie
     @return Trie inicializado con nodo raiz
 */
-Trie *inicializar_trie(){
+Trie *inicializar_trie(int variante){
     Trie *t = malloc(sizeof(Trie));
     t->raiz = inicializar_nodo(NULL);
     t->num_nodos = 1;
-    
+    t->variante = variante;
     return t;
 }
 
